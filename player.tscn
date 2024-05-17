@@ -1,0 +1,121 @@
+[gd_scene load_steps=15 format=3 uid="uid://d1klmkguc6s08"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_otmah"]
+[ext_resource type="AudioStream" uid="uid://dore3odqqkqv5" path="res://Audio/SFX - Death Explosion.ogg" id="2_p00k4"]
+[ext_resource type="AudioStream" uid="uid://5j6wribp56iv" path="res://Audio/SFX - Success.ogg" id="3_2h8tf"]
+[ext_resource type="AudioStream" uid="uid://dc36eftc4p6s8" path="res://Audio/SFX - Main engine thrust.ogg" id="4_bfgtt"]
+[ext_resource type="PackedScene" uid="uid://ux6ivcx1ovdp" path="res://Particles/booster_particles.tscn" id="5_iy6xw"]
+[ext_resource type="PackedScene" uid="uid://dcecb8hw7dbrv" path="res://Particles/explosion_particles.tscn" id="6_662cj"]
+[ext_resource type="PackedScene" uid="uid://jfwajmrh6ca7" path="res://Particles/success_particles.tscn" id="7_3jtcu"]
+[ext_resource type="Material" uid="uid://c7422qrqn1lj3" path="res://resources/Ship Color.tres" id="8_r40aw"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_uum5r"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_rkh3m"]
+points = PackedVector3Array(-0.214183, -0.948028, -0.451129, 0.0227317, 0.952146, 0.498887, 0.171488, 0.951995, 0.469018, -0.125934, 0.952684, -0.483291, 0.499663, -0.953674, -0.00688883, -0.387646, -0.93796, 0.315653, -0.483292, 0.952686, -0.12593, 0.375097, 0.940128, -0.329816, 0.171488, -0.951995, 0.469018, 0.140783, -0.945485, -0.479579, 0.469014, 0.952011, 0.171499, -0.387646, 0.93796, 0.315653, -0.483292, -0.952686, -0.12593, -0.183511, -0.943076, 0.464698, 0.407412, -0.946994, 0.288983, 0.375097, -0.940128, -0.329816, -0.395154, 0.955761, -0.305523, -0.479555, 0.945437, 0.14088, 0.464698, 0.943099, -0.183512, 0.140783, 0.945485, -0.479579, -0.243203, 0.945955, 0.436491, -0.479555, -0.945437, 0.14088, 0.288971, 0.946988, 0.407421, -0.395154, -0.955761, -0.305523, -0.0069906, -0.953641, 0.499658, 0.499663, 0.953674, -0.00688883, -0.271948, 0.943071, -0.419217, 0.464698, -0.943099, -0.183512, -0.125934, -0.952684, -0.483291, 0.315648, 0.937973, -0.387651, 0.469014, -0.952011, 0.171499, 0.407412, 0.946994, 0.288983)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3f5vj"]
+top_radius = 0.2
+bottom_radius = 0.2
+height = 1.4
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_p7tpi"]
+top_radius = 0.0
+bottom_radius = 0.2
+height = 0.5
+
+[sub_resource type="PrismMesh" id="PrismMesh_non3o"]
+left_to_right = 0.0
+size = Vector3(0.5, 0.2, 0.2)
+
+[sub_resource type="PrismMesh" id="PrismMesh_0k6c2"]
+left_to_right = 0.0
+size = Vector3(0.7, 0.3, 0.05)
+
+[node name="Player" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0445056, 0)
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+max_contacts_reported = 10
+contact_monitor = true
+linear_damp = 1.0
+angular_damp = 3.0
+script = ExtResource("1_otmah")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06236, 0)
+visible = false
+mesh = SubResource("CylinderMesh_uum5r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06236, 0)
+shape = SubResource("ConvexPolygonShape3D_rkh3m")
+
+[node name="ExplosionAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_p00k4")
+
+[node name="SuccessAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_2h8tf")
+
+[node name="RocketAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_bfgtt")
+
+[node name="BoosterParticles" parent="." instance=ExtResource("5_iy6xw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.109208, 0)
+visibility_aabb = AABB(-5.04773, -3.63965, -3.66992, 8, 8, 8)
+
+[node name="RightBoosterParticles" parent="." instance=ExtResource("5_iy6xw")]
+transform = Transform3D(0.947768, -0.318959, 0, 0.318959, 0.947768, 0, 0, 0, 1, 0.293331, 0.083811, 0)
+visibility_aabb = AABB(-5.04773, -3.63965, -3.66992, 8, 8, 8)
+
+[node name="LeftBoosterParticles" parent="." instance=ExtResource("5_iy6xw")]
+transform = Transform3D(0.951057, 0.309017, 0, -0.309017, 0.951057, 0, 0, 0, 1, -0.298411, 0.109208, 0)
+visibility_aabb = AABB(-5.04773, -3.63965, -3.66992, 8, 8, 8)
+
+[node name="ExplosionParticles" parent="." instance=ExtResource("6_662cj")]
+
+[node name="SuccessParticles" parent="." instance=ExtResource("7_3jtcu")]
+
+[node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+material_override = ExtResource("8_r40aw")
+mesh = SubResource("CylinderMesh_3f5vj")
+
+[node name="Cockpit" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
+material_override = ExtResource("8_r40aw")
+mesh = SubResource("CylinderMesh_p7tpi")
+skeleton = NodePath("../..")
+
+[node name="ThrusterLeft" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.291, -0.44, 0.025)
+material_override = ExtResource("8_r40aw")
+mesh = SubResource("PrismMesh_non3o")
+
+[node name="ThrusterRight" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(4.37114e-08, 1, -8.74228e-08, 1, -4.37114e-08, 0, -3.82137e-15, -8.74228e-08, -1, 0.276765, -0.44, 0.025)
+material_override = ExtResource("8_r40aw")
+mesh = SubResource("PrismMesh_non3o")
+
+[node name="DecoThruster1" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, -0.0305839, -0.44, 0.291452)
+material_override = ExtResource("8_r40aw")
+mesh = SubResource("PrismMesh_non3o")
+
+[node name="DecoThruster2" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, -0.0305839, -0.44, -0.294255)
+material_override = ExtResource("8_r40aw")
+mesh = SubResource("PrismMesh_non3o")
+
+[node name="WingRight" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(4.37114e-08, 1, 8.74228e-08, 1, -4.37114e-08, 0, 3.82137e-15, 8.74228e-08, -1, 0.347947, 0.351295, -0.032066)
+material_override = ExtResource("8_r40aw")
+mesh = SubResource("PrismMesh_0k6c2")
+
+[node name="WingLeft" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(4.37114e-08, -1, 8.74228e-08, 1, 4.37114e-08, -8.74228e-08, 8.74228e-08, 8.74228e-08, 1, -0.350958, 0.34713, -0.032066)
+material_override = ExtResource("8_r40aw")
+mesh = SubResource("PrismMesh_0k6c2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

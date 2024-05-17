@@ -1,0 +1,137 @@
+[gd_scene load_steps=6 format=3 uid="uid://bj5pi8h24oph8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_df71l"]
+albedo_color = Color(0.4, 0.270588, 0.176471, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bcsgh"]
+albedo_color = Color(0.4, 0.270588, 0.176471, 1)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_r6nye"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_3rvdf"]
+sky_material = SubResource("ProceduralSkyMaterial_r6nye")
+
+[sub_resource type="Environment" id="Environment_q1sd5"]
+background_mode = 1
+background_color = Color(0.07, 0.04452, 0.0308, 1)
+sky = SubResource("Sky_3rvdf")
+ambient_light_source = 3
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Floor" type="CSGBox3D" groups=["Hazard"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
+material_override = SubResource("StandardMaterial3D_df71l")
+use_collision = true
+size = Vector3(35, 8, 5)
+material = SubResource("StandardMaterial3D_bcsgh")
+
+[node name="Background" type="CSGBox3D" parent="."]
+transform = Transform3D(0.951814, -0.306676, 0, 0.306676, 0.951814, 0, 0, 0, 1, 9.39412, 6.32883, -4.46976)
+material_override = SubResource("StandardMaterial3D_bcsgh")
+use_collision = true
+size = Vector3(4, 10, 4)
+
+[node name="Background2" type="CSGBox3D" parent="."]
+transform = Transform3D(0.50065, 0.86565, 0, -0.86565, 0.50065, 0, 0, 0, 1, -13.1242, 6.32883, -4.46976)
+material_override = SubResource("StandardMaterial3D_bcsgh")
+use_collision = true
+size = Vector3(4, 10, 4)
+
+[node name="Background3" type="CSGBox3D" parent="."]
+transform = Transform3D(0.965998, 0.258549, 0, -0.258549, 0.965998, 0, 0, 0, 1, -5.19447, 3.81404, -4.46976)
+material_override = SubResource("StandardMaterial3D_bcsgh")
+use_collision = true
+size = Vector3(4, 10, 4)
+
+[node name="Background4" type="CSGBox3D" parent="."]
+transform = Transform3D(0.840179, -0.54231, 0, 0.54231, 0.840179, 0, 0, 0, 1, 0.653193, 3.81404, -4.46976)
+material_override = SubResource("StandardMaterial3D_bcsgh")
+use_collision = true
+size = Vector3(4, 10, 4)
+
+[node name="Background5" type="CSGBox3D" parent="."]
+transform = Transform3D(0.960372, -0.278723, 0, 0.278723, 0.960372, 0, 0, 0, 1, 0.653193, 15.8831, -4.46976)
+material_override = SubResource("StandardMaterial3D_bcsgh")
+use_collision = true
+size = Vector3(4, 10, 4)
+
+[node name="Background6" type="CSGBox3D" parent="."]
+transform = Transform3D(0.781078, 0.187899, 0.595493, -0.585604, 0.551462, 0.594102, -0.216761, -0.812763, 0.540769, -10.1605, 15.8831, -4.46976)
+material_override = SubResource("StandardMaterial3D_bcsgh")
+use_collision = true
+size = Vector3(4, 10, 4)
+
+[node name="Background7" type="CSGBox3D" parent="."]
+transform = Transform3D(0.920948, 0.389687, 0, -0.389687, 0.920948, 0, 0, 0, 1, -3.87686, 15.8831, -4.46976)
+material_override = SubResource("StandardMaterial3D_bcsgh")
+use_collision = true
+size = Vector3(4, 10, 4)
+
+[node name="Background8" type="CSGBox3D" parent="."]
+transform = Transform3D(0.920948, 0.389687, 0, -0.389687, 0.920948, 0, 0, 0, 1, 9.37929, 15.8831, -4.46976)
+material_override = SubResource("StandardMaterial3D_bcsgh")
+use_collision = true
+size = Vector3(4, 10, 4)
+
+[node name="Wall" type="CSGBox3D" parent="."]
+transform = Transform3D(0.951814, -0.306676, 0, 0.306676, 0.951814, 0, 0, 0, 1, -16.7301, 6.32883, -0.64048)
+material_override = SubResource("StandardMaterial3D_bcsgh")
+use_collision = true
+size = Vector3(4, 10, 4)
+
+[node name="Wall2" type="CSGBox3D" parent="."]
+transform = Transform3D(0.784679, 0.619902, 0, -0.619902, 0.784679, 0, 0, 0, 1, -16.7301, 13.4978, -0.64048)
+material_override = SubResource("StandardMaterial3D_bcsgh")
+use_collision = true
+size = Vector3(4, 10, 4)
+
+[node name="Wall3" type="CSGBox3D" parent="."]
+transform = Transform3D(0.999075, 0.0430091, 0, -0.0430091, 0.999075, 0, 0, 0, 1, 16.0364, 6.15635, -0.64048)
+material_override = SubResource("StandardMaterial3D_bcsgh")
+use_collision = true
+size = Vector3(4, 10, 4)
+
+[node name="Ceiling" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.195073, 0.971765, 0.132735, -0.980789, -0.193263, -0.0265086, -0.000107384, -0.135356, 0.990797, -10.4124, 16.5178, -0.64048)
+material_override = SubResource("StandardMaterial3D_bcsgh")
+use_collision = true
+size = Vector3(4, 10, 4)
+
+[node name="Ceiling2" type="CSGBox3D" parent="."]
+transform = Transform3D(0.330927, 0.934967, 0.127765, -0.943657, 0.327895, 0.0446925, -0.000107385, -0.135356, 0.990797, -1.51361, 16.5178, -0.64048)
+material_override = SubResource("StandardMaterial3D_bcsgh")
+use_collision = true
+size = Vector3(4, 10, 4)
+
+[node name="Ceiling3" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.195073, 0.971765, 0.132735, -0.980789, -0.193263, -0.0265086, -0.000107384, -0.135356, 0.990797, 6.17746, 16.5178, -0.64048)
+material_override = SubResource("StandardMaterial3D_bcsgh")
+use_collision = true
+size = Vector3(4, 10, 4)
+
+[node name="Ceiling4" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.649766, 0.753148, 0.10282, -0.760134, -0.643775, -0.0880306, -0.000107385, -0.135356, 0.990797, 13.9321, 13.4032, -0.64048)
+material_override = SubResource("StandardMaterial3D_bcsgh")
+use_collision = true
+size = Vector3(4, 10, 4)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.656769, 0.515778, -0.550117, -0.727302, -0.240532, 0.642788, 0.199215, 0.822264, 0.5331, 0, 0, 0)
+light_energy = 0.5
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_q1sd5")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.2984, 11.0043, -0.844481)
+omni_range = 12.0
+omni_attenuation = 0.5
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9694, 9.32718, -0.844481)
+omni_range = 12.0
+omni_attenuation = 0.5
